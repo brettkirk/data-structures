@@ -69,6 +69,18 @@ var graph = new Graph();
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  addNode: constant
+
+  contains : linear
+  
+  removeNode: linear
+
+  hasedge: linear
+
+  addEdge: constant
+
+  removeEdge: linear
+
  */
 
 

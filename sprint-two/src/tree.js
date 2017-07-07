@@ -23,44 +23,35 @@ treeMethods.addChild = function(value) {
 
 */
 treeMethods.contains = function(target) {
-  for (var index = 0; index < this.children.length; index++) {
+  //var isFound = false;
+  var matches = [];
+  /*for (var index = 0; index < this.children.length; index++) {
     if (this.children[index].value === target) {
-      return true;
+      isFound = true;
     } else if (this.children[index].children.length > 0) {
       //console.log('grandchildren');
-      return this.children[index].contains(target);
+      if (this.children[index].contains(target)) {
+        continue;
+      }
     } else {
       return false;
-    }
-  }
-  
-  
-  
-  
-  //return this.children.includes(target);
-  /*if (flag === undefined) {
-    flag = false;
-  }
-  if (this.value === target) {
-    flag = true;
-    console.log(flag);
-    return flag;
-  }
-  if (this.value !== target && this.children.length > 0) {
-    //this.children.forEach(this.contains(target, flag));
-    for (var i = 0; i < this['children'].length; i++) {
-      console.log(flag);
-      this.children[i].contains(target, flag);
-    }
-    console.log('for each');
-    console.log(flag);
-    return flag;
-  }
-  if (this.value !== target && this.children.length === 0) {
-    console.log('not found');
-    console.log(flag);
-    return flag;
+    } 
   } */
+  
+  //return isFound;
+  var matchFinder = function(node, target) {
+    if (node['value'] === target) {
+      matches.push(node);
+    }
+    node.children.forEach(function(value) {
+      matchFinder(value, target);
+    });
+  };
+  matchFinder(this, target);
+  if (matches.length > 0) {
+    return true;
+  }
+  return false;
 };
 
 

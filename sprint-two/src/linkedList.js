@@ -32,9 +32,7 @@ var LinkedList = function() {
     }
     return isMatch;
   };  
-
-  return list;
-    
+  return list;  
 };
 
 var Node = function(value) {

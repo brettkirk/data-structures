@@ -18,6 +18,14 @@ describe('set', function() {
     expect(set.contains('Susan Sarandon')).to.equal(true);
   });
 
+  it('should not contain duplicates', function() {
+    set.add('Susan Sarandon');
+    set.add('Susan Sarandon');
+    var keys = Object.keys(set._storage);
+    expect(keys.length).to.equal(1);
+    
+  });
+
   it('should remove values from a set', function() {
     set.add('Mel Gibson');
     set.remove('Mel Gibson');

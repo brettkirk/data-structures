@@ -36,6 +36,17 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 1)).to.equal(false);
   });
 
+  it('should only create an edge when given two nodes', function() {
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addNode(3);
+    graph.addEdge(3, 2);
+    expect(graph.hasEdge(3, 2)).to.equal(true);
+    expect(graph.addEdge(3)).to.equal('Incorrect number of arguments');
+    expect(graph.addEdge(1, 2, 3)).to.equal('Incorrect number of arguments');
+    expect(graph.addEdge()).to.equal('Incorrect number of arguments');
+  });
+
   it('should remove edges between nodes', function() {
     graph.addNode(4);
     graph.addNode(5);

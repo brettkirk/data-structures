@@ -3,6 +3,7 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
+  this._size = 0;
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -17,6 +18,7 @@ HashTable.prototype.insert = function(k, v) {
     }
   }
   this._storage[index].push([k, v]);
+  this._size++;
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -35,8 +37,21 @@ HashTable.prototype.remove = function(k) {
       this._storage[index][i].splice(i, 1, []);
     }
   }
+  this._size--;
 };
 
+HashTable.prototype.resize = function() {
+  var storage = this;
+  //compare size to limit
+  //if size < 25%, create limited array with limit /2
+  //if size > 75%, create lim arr with limit * 2
+  //delete all vals in current table
+  //reassign values by looping through storage var and storage[index]
+  //for (i= 0; i < this._storage.length; i++) {this._storage[i] = undefined;}
+  
+  
+  
+};
 
 
 /*

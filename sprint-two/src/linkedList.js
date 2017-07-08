@@ -25,13 +25,15 @@ var LinkedList = function() {
   list.contains = function(target) {
     var isMatch = false;
     for (var key in this) {
-      if (this[key]['value'] === target) {
+      if (this[key]['value'] === target && typeof (this[key]) !== 'function') {
+        console.log(this[key]);
         isMatch = true;
         continue;
       }
     }
     return isMatch;
   };  
+
   return list;  
 };
 

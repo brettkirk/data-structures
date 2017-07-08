@@ -44,6 +44,12 @@ describe('linkedList', function() {
     expect(linkedList.contains(6)).to.equal(false);
   });
 
+  it('should return false when not given a value to find', function() {
+    linkedList.addToTail(4);
+    linkedList.addToTail(5);
+    expect(linkedList.contains()).to.equal(false);
+  });
+
   it('should not contain a value that was removed', function() {
     linkedList.addToTail(4);
     linkedList.addToTail(5);

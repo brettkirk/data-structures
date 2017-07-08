@@ -4,6 +4,8 @@ var Tree = function(value) {
   newTree.addChild = treeMethods.addChild;
   newTree.contains = treeMethods.contains;
   newTree.children = [];  
+  newTree.parent = null;
+  newTree.removeFromParent = treeMethods.removeFromParent;
 
   return newTree;
 };
@@ -12,6 +14,7 @@ var treeMethods = {};
 
 treeMethods.addChild = function(value) {
   this.children.push(Tree(value));
+  this.children[this.children.length - 1].parent = this;
 };
 
 treeMethods.contains = function(target) {
@@ -19,7 +22,7 @@ treeMethods.contains = function(target) {
   
   var matchFinder = function(node, target) {
     if (node['value'] === target) {
-      matches.push(node);
+      matches.push( node);
     }
     node.children.forEach(function(value) {
       matchFinder(value, target);
@@ -32,6 +35,15 @@ treeMethods.contains = function(target) {
   return false;
 };
 
+treeMethods.removeFromParent = function () {
+  dad = this.parent;
+  this.parent = null;
+  for (var i = 0; i < dad.children.length; i++) {
+    if (dad.children[i] === this) {
+      dad.children.splice(i, 1);
+    }
+  }
+};
 
 
 /*

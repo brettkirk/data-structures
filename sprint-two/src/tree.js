@@ -6,6 +6,7 @@ var Tree = function(value) {
   newTree.children = [];  
   newTree.parent = null;
   newTree.removeFromParent = treeMethods.removeFromParent;
+  newTree.traverse = treeMethods.traverse;
 
   return newTree;
 };
@@ -43,6 +44,14 @@ treeMethods.removeFromParent = function () {
       dad.children.splice(i, 1);
     }
   }
+};
+
+treeMethods.traverse = function(callback) {
+  callback(this);
+  this.children.forEach(function(child) {
+    child.traverse(callback);
+  });
+  return;
 };
 
 

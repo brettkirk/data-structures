@@ -6,20 +6,24 @@ var BinarySearchTree = function(value) {
   binaryTree.insert = binaryTreeMethods.insert;
   binaryTree.contains = binaryTreeMethods.contains;
   binaryTree.depthFirstLog = binaryTreeMethods.depthFirstLog;
-
+  binaryTree.breadthFirstLog = binaryTreeMethods.breadthFirstLog;
   return binaryTree;
 };
 
 var binaryTreeMethods = {};
 
 binaryTreeMethods.insert = function (value) {
+  //var depth = 0;
+  //var buildTree = function (value, depth) {
   if (this.value === undefined) {
     this.value = value;
+    //this.depth = depth
   }
   if (value < this.value) {
     if (this.left === undefined) {
       this.left = BinarySearchTree(value);
     } else {
+      //depth++
       this.left.insert(value);
     }
   }
@@ -27,6 +31,7 @@ binaryTreeMethods.insert = function (value) {
     if (this.right === undefined) {
       this.right = BinarySearchTree(value);
     } else {
+      //depth++
       this.right.insert(value);
     }
   }
@@ -76,6 +81,33 @@ binaryTreeMethods.depthFirstLog = function (callback) {
   
 };
 
+binaryTreeMethods.breadthFirstLog = function () {
+  results = [];
+  results.push(this);
+  counter = 0;
+  var breadthTraversal = function (node) {
+    if (typeof(node) === 'object') {
+      if (node.left !== undefined) {
+        results.push(node.left);
+      }
+      if (node.right !== undefined) {
+        results.push(node.right);
+      }
+      counter++;
+      breadthTraversal(results[counter]);
+    } else {
+      return;
+    }
+    
+  };
+  
+  breadthTraversal(this);
+  results = results.map(function(element) {
+    return element.value;
+  });
+  
+  return results;
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
